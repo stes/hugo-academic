@@ -15,14 +15,20 @@
       <div class="portrait-title">
         <h2 itemprop="name">{{ $.Site.Params.name }}</h2>
         <h3 itemprop="jobTitle">{{ $.Site.Params.role }}</h3>
-        {{ with $.Site.Params.organization }}<h3 itemprop="worksFor">{{ . }}</h3>{{ end }}
+        {{ if $.Site.Params.organization }}
+        <h3 itemprop="worksFor">
+          {{ with $.Site.Params.organization_url }}<a href="{{ . }}" target="_blank">{{ end }}
+          {{ $.Site.Params.organization }}
+          {{ if $.Site.Params.organization_url }}</a>{{ end }}
+        </h3>
+        {{ end }}
       </div>
 
       <ul class="social-icon" aria-hidden="true">
         {{ range $.Site.Params.social }}
         {{ $pack := or .icon_pack "fa" }}
         <li>
-          <a href="{{ .link }}">
+          <a href="{{ .link | safeURL }}" target="_blank">
             <i class="{{ $pack }} {{ $pack }}-{{ .icon }} big-icon"></i>
           </a>
         </li>
@@ -39,7 +45,7 @@
 
       {{ with $page.Params.interests }}
       <div class="col-sm-5">
-        <h3>{{ .title | default "Interests" | markdownify }}</h3>
+        <h3>{{ i18n "interests" | markdownify }}</h3>
         <ul class="ul-interests">
           {{ range .interests }}
           <li>{{ . }}</li>
@@ -50,7 +56,7 @@
 
       {{ with $page.Params.education }}
       <div class="col-sm-7">
-        <h3>{{ .title | default "Education" | markdownify }}</h3>
+        <h3>{{ i18n "education" | markdownify }}</h3>
         <ul class="ul-edu fa-ul">
           {{ range .courses }}
           <li>

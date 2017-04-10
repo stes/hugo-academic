@@ -1,0 +1,29 @@
+{{ $ := .root }}
+{{ $page := .page }}
+{{ $pubs_len := len (where $.Data.Pages "Type" "publication") }}
+
+<!-- Publications widget -->
+<div class="row">
+  <div class="col-xs-12 col-md-4 section-heading">
+    <h1>{{ with $page.Title }}{{ . | markdownify }}{{ end }}</h1>
+    {{ with $page.Params.subtitle }}<p>{{ . | markdownify }}</p>{{ end }}
+  </div>
+  <div class="col-xs-12 col-md-8">
+      {{ with $page.Params }}
+        <ul class="ul-edu fa-ul">
+          {{ range .role }}
+          <li>
+
+            <h3>{{ .title | default "" | markdownify }}</h3>
+            <div class="description">
+                <p><i class="fa fa-building-o" aria-hidden="true" ></i> {{ .institution | default "" | markdownify}}
+                <span style="float:right;"> <i class="fa fa-clock-o" aria-hidden="true" ></i> {{ .time | default "" | markdownify}}</span></p>
+              <p class="detail">{{ .detail | markdownify}}</p>
+            </div>
+            <hr>
+          </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+  </div>
+</div>

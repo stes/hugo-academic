@@ -1,3 +1,6 @@
+Note that this is a slightly modified version of the Hugo Academic Team I use for [my personal homepage](https://stes.github.io).
+
+
 # Academic: the personal website framework for [Hugo](https://gohugo.io)
 
 **Academic** is a framework to help you create a beautiful website quickly. Perfect for personal, student, or academic websites. [Check out the latest demo](http://gcushen.github.io/hugo-academic-demo/) of what you'll get in less than 10 minutes.
